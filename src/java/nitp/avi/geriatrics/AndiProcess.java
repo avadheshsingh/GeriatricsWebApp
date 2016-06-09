@@ -46,10 +46,9 @@ public class AndiProcess extends HttpServlet {
         PrintWriter out = response.getWriter();
          try{
         String t=request.getParameter("name");
-      
          StringTokenizer stk = new StringTokenizer(t);  
         String[] symptoms = t.split(",");
-       
+ 
          String squery="";
         // jena code
         // FileManager.get().addLocatorClassLoader(hi.class.getClassLoader());
@@ -66,7 +65,7 @@ public class AndiProcess extends HttpServlet {
 		"rdfs:label  ?label."+
 						"}";
 		*/
-        for(int i=1;i<symptoms.length;i++)                    
+         for(int i=1;i<symptoms.length;i++)                    
                 squery +="union {?s  OL:HasSymptoms  OL:"+symptoms[i].trim()+"}";
                 String  queryString=
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +

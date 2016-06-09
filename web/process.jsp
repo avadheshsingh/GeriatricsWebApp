@@ -35,6 +35,18 @@
              name += v[i].trim()+" ";}
              return name;
                }
+
+          public String removeSpace(String value){
+              
+               StringTokenizer st = new StringTokenizer(value);  
+		  String[] v = value.split("\\s+");
+		  String  name="";
+                  int i;
+		  for(i=0;i<v.length-1;i++){
+                  name += v[i].trim()+"_";}
+                  name +=v[i];
+                  return name;
+               }
                %>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -139,14 +151,14 @@ document.getElementById('avadhesh').innerHTML=val;
 						"}";
 		*/
 		for(int i=1;i<symptoms.length;i++)                    
-                squery +="union {?s  OL:HasSymptoms  OL:"+symptoms[i]+"}";
+                squery +="union {?s  OL:HasSymptoms  OL:"+removeSpace(symptoms[i])+"}";
                 String  queryString=
 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
 "PREFIX OL: <http://purl.obolibrary.org/obo/geriatrics.owl#>"+
 "PREFIX : <http://xmlns.com/foaf/0.1/>"+
 "SELECT * WHERE { " +
-"   {?s  OL:HasSymptoms  OL:"+symptoms[0]+"}"+squery+
+"   {?s  OL:HasSymptoms  OL:"+removeSpace(symptoms[0])+"}"+squery+
 "?s rdfs:label ?label"+
 "}";
 		
